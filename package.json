@@ -1,0 +1,11 @@
+{
+  "name": "walltouch-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd ecommerce-store && npm run dev",
+    "build": "node build.js",
+    "start": "cd ecommerce-store && npm run start",
+    "lint": "cd ecommerce-store && npm run lint"
+  }
+}
