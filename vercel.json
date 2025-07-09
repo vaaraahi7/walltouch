@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "cd ecommerce-store && npm install && npm run build",
   "outputDirectory": "ecommerce-store/.next",
   "installCommand": "npm install",
   "framework": "nextjs",
