@@ -1,15 +1,31 @@
 const { execSync } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 
 console.log('Starting build process...');
 
-// Change to ecommerce-store directory and run build
-process.chdir(path.join(__dirname, 'ecommerce-store'));
+const ecommerceStorePath = path.join(__dirname, 'ecommerce-store');
 
-console.log('Installing dependencies...');
-execSync('npm install', { stdio: 'inherit' });
+// Check if ecommerce-store directory exists
+if (!fs.existsSync(ecommerceStorePath)) {
+  console.error('ecommerce-store directory not found!');
+  process.exit(1);
+}
 
-console.log('Building application...');
-execSync('npm run build', { stdio: 'inherit' });
+// Change to ecommerce-store directory
+process.chdir(ecommerceStorePath);
 
-console.log('Build completed successfully!');
+console.log('Current directory:', process.cwd());
+console.log('Installing dependencies in ecommerce-store...');
+
+try {
+  execSync('npm install', { stdio: 'inherit' });
+  
+  console.log('Building Next.js application...');
+  execSync('npm run build', { stdio: 'inherit' });
+  
+  console.log('Build completed successfully!');
+} catch (error) {
+  console.error('Build failed:', error.message);
+  process.exit(1);
+}
