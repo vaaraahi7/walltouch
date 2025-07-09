@@ -1,0 +1,15 @@
+const { execSync } = require('child_process');
+const path = require('path');
+
+console.log('Starting build process...');
+
+// Change to ecommerce-store directory and run build
+process.chdir(path.join(__dirname, 'ecommerce-store'));
+
+console.log('Installing dependencies...');
+execSync('npm install', { stdio: 'inherit' });
+
+console.log('Building application...');
+execSync('npm run build', { stdio: 'inherit' });
+
+console.log('Build completed successfully!');
